@@ -22,7 +22,7 @@ RUN wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz \
 # Copy your Python application code to the container
 COPY . /app
 WORKDIR /app
-
+RUN pip install --upgrade pip
 # Install Python dependencies
 RUN pip install -r requirements.txt
 
