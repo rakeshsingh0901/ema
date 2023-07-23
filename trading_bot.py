@@ -89,3 +89,5 @@ if __name__ == "__main__":
     fix_instrument = 256265
     bot = TradingBot(enctoken, fix_instrument)
     bot.run()
+
+# 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
