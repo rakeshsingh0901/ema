@@ -33,4 +33,4 @@ RUN pip install -r requirements.txt
 EXPOSE 8080
 
 # Command to run your Python application
-CMD ["python", "-u", "trading_bot.py"]
+CMD ["python", "trading_bot.py"]
