@@ -85,11 +85,14 @@ class TradingBot:
       self.trade_executor.execute_trade(instrument, trade_type, high_price, low_price)
       self.in_trade = True
 
-if __name__ == "__main__":
-  print(">>>>>>>>>>>>>>>>>>>>>>>")
-  enctoken = "ogDV+YjtzqFIxralu0no91L3Glod28EOrtH5PXWPB2qzcTbcDgWYjRfMKcUeDm2dyL9IQXQxsl7PMpalqVeZQ3q9mpFJBSbIuYLp+wmyfYlJpqRMsYMU9g=="
-  fix_instrument = 256265
-  bot = TradingBot(enctoken, fix_instrument)
-  bot.run()
-
+# Define the WSGI application callable
+def application(environ, start_response):
+    status = '200 OK'
+    headers = [('Content-type', 'text/plain')]
+    start_response(status, headers)
+    print('>>>>>>>>>>>>>>>>>>>>>>>')
+    enctoken = "ogDV+YjtzqFIxralu0no91L3Glod28EOrtH5PXWPB2qzcTbcDgWYjRfMKcUeDm2dyL9IQXQxsl7PMpalqVeZQ3q9mpFJBSbIuYLp+wmyfYlJpqRMsYMU9g=="
+    fix_instrument = 256265
+    bot = TradingBot(enctoken, fix_instrument)
+    return [bot.run().encode('utf-8')]
 # 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

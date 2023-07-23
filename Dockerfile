@@ -29,8 +29,10 @@ RUN pip install --upgrade pip
 # Install Python dependencies
 RUN pip install -r requirements.txt
 
+# Install Gunicorn
+RUN pip install gunicorn
 # Expose the necessary port (if applicable)
 EXPOSE 8080
 
 # Command to run your Python application
-CMD ["python", "trading_bot.py"]
+CMD ["gunicorn", "-b", "0.0.0.0:8000", "--timeout", "0", "trading_bot:application"]
