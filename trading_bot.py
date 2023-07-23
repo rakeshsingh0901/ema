@@ -38,6 +38,7 @@ class TradingBot:
 
     while True:
       current_time = datetime.now().time()
+      print("current_time", current_time)
 
       if current_time > desired_time:
         if self.first_time and not self.in_trade:
@@ -48,7 +49,7 @@ class TradingBot:
           self.first_time = False
           print("????????")
         
-        if current_time.minute % 5 == 0 and not self.in_trade:
+        if current_time.minute % 5 == 0 and current_time.second == 0 and not self.in_trade:
           date_data, open_data, high_data, low_data, close_data = self.his_data()
           adx, ema_5, bolliger_band = self.indicator(date_data, open_data, high_data, low_data, close_data)
           self.buy_signal = TradingSignal.is_buy_signal(high_data[-2], ema_5[-2], adx[-2], low_data[-2], bolliger_band[2][-2])
@@ -85,9 +86,10 @@ class TradingBot:
       self.in_trade = True
 
 if __name__ == "__main__":
-    enctoken = "jBoOnEiQZtlnPdG/G6H+yMp8SjnyFAo0TQwWo1b1A7od7G0dPPQr/NbxYNbRF/+vbZ1xf1cUIXisyGsMUv7EbAkIuwsJPEA3yMsneM+DdCD+6FHG6ODkAw=="
-    fix_instrument = 256265
-    bot = TradingBot(enctoken, fix_instrument)
-    bot.run()
+  print(">>>>>>>>>>>>>>>>>>>>>>>")
+  enctoken = "ogDV+YjtzqFIxralu0no91L3Glod28EOrtH5PXWPB2qzcTbcDgWYjRfMKcUeDm2dyL9IQXQxsl7PMpalqVeZQ3q9mpFJBSbIuYLp+wmyfYlJpqRMsYMU9g=="
+  fix_instrument = 256265
+  bot = TradingBot(enctoken, fix_instrument)
+  bot.run()
 
 # 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

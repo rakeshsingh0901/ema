@@ -22,6 +22,9 @@ RUN wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz \
 # Copy your Python application code to the container
 COPY . /app
 WORKDIR /app
+
+ENV TZ=Asia/Kolkata
+
 RUN pip install --upgrade pip
 # Install Python dependencies
 RUN pip install -r requirements.txt
@@ -30,4 +33,4 @@ RUN pip install -r requirements.txt
 EXPOSE 8080
 
 # Command to run your Python application
-CMD ["python", "trading_bot.py"]
+CMD ["python", "-u", "trading_bot.py"]
